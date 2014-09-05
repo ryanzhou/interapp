@@ -7,17 +7,16 @@ require "interapp/version"
 Gem::Specification.new do |s|
   s.name        = "interapp"
   s.version     = Interapp::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Interapp."
-  s.description = "TODO: Description of Interapp."
+  s.authors     = ["Ryan Zhou"]
+  s.email       = ["github@zhoutong.com"]
+  s.homepage    = "https://github.com/zhoutong/interapp"
+  s.summary     = "Interapp handles simple and secure inter-app messaging."
+  s.description = "Interapp is a mountable Rails engine that handles simple and secure inter-app messaging using public key cryptography."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.1.1"
-
-  s.add_development_dependency "sqlite3"
+  s.add_dependency "ecdsa"
 end
