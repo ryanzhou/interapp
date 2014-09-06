@@ -1,6 +1,6 @@
 module Interapp
   class Peer
-    attr :identifier, :public_key, :endpoint
+    attr_accessor :identifier, :public_key, :endpoint
 
     def initialize(attributes)
       attributes.each { |name, value| send("#{name}=", value) }

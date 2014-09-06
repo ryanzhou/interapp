@@ -6,17 +6,17 @@ module Interapp
       attributes.each { |name, value| send("#{name}=", value) }
     end
 
-    def valid?
-      peer.public_key
+    def verify
+      Interapp::Cryptography.verify(payload, signature_decoded, peer.public_key_decoded)
     end
 
-
-    def self.receive_message(payload:, peer_identifier:, signature:)
-      message = Message.new(payload: payload, peer_identifier: peer_identifier, signature: signature)
+    def sign
+      encoded_signature = Interapp::Cryptography.sign(payload, Interapp.private_key.to_i(16))
+      self.signature = encoded_signature.unpack("H*").first
     end
 
-    def self.send_message(payload:, peer_identifier:)
-      message = Message.new(payload: payload, peer_identifier: peer_identifier)
+    def signature_decoded
+      ECDSA::Format::SignatureDerString.decode([signature].pack("H*"))
     end
   end
 end

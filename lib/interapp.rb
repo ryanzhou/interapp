@@ -1,6 +1,7 @@
 require "ecdsa"
 require "interapp/engine"
 require "interapp/configuration"
+require "interapp/cryptography"
 
 module Interapp
   extend Configuration
