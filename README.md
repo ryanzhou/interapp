@@ -20,7 +20,7 @@ If you decide to implement Interapp in your Rails application, you are trusting:
 
 Add the following to your Gemfile:
 
-```
+```ruby
 gem 'interapp'
 ```
 
@@ -42,13 +42,13 @@ That's it! You're now ready to configure your Interapp-powered application.
 
 To configure your app to use Interapp, mount Interapp as an Engine in your `config/routes.rb`:
 
-```
+```ruby
 mount Interapp::Engine => "/interapp"
 ```
 
 And then, you should probably create a configuration file `config/initializers/interapp.rb` with something like this:
 
-```
+```ruby
 Interapp.configure do |config|
   config.identifier = "dummy"
   config.private_key = "8347824e9c8e8414af57845a19eaaf28df323b9db05bb81de6cd3bbd784174a5"
@@ -66,7 +66,7 @@ Install this gem in all the applications that you want to use Interapp with, and
 
 To add a peer, put the something like this in the config block:
 
-```
+```ruby
 config.add_peer do |peer|
   peer.identifier = "dummy"
   peer.public_key = "02aeca3e7c706158823dd23a03373438c355cdf476fe3594364226ada0035abfea"
