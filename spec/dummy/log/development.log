@@ -1,0 +1,36 @@
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:17:56 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payload"], "message"=>{"test"=>["message", "payload"]}}
+Completed 200 OK in 247ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:17:58 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payload"], "message"=>{"test"=>["message", "payload"]}}
+Completed 200 OK in 218ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:18:02 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payload"], "message"=>{"test"=>["message", "payload"]}}
+Completed 403 Forbidden in 226ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:18:05 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payload"], "message"=>{"test"=>["message", "payload"]}}
+Completed 200 OK in 231ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:18:07 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payloadd"], "message"=>{"test"=>["message", "payloadd"]}}
+Completed 403 Forbidden in 234ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/interapp" for 127.0.0.1 at 2014-09-07 13:18:11 +1000
+Processing by Interapp::MessagesController#create as HTML
+  Parameters: {"test"=>["message", "payload"], "message"=>{"test"=>["message", "payload"]}}
+Completed 200 OK in 236ms (Views: 0.1ms | ActiveRecord: 0.0ms)

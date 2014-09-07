@@ -104,6 +104,43 @@ For ease of configuration, public and private keys in Interapp are both stored a
 * `public_key` is a hex-encoded Point Octet binary string with compression.
 * `private_key` is a hex-encoded random integer.
 
+### Example
+
+This is an example of an Interapp HTTP request:
+
+```http
+POST /interapp HTTP/1.1
+Content-Type: application/json
+Host: localhost:3000
+Connection: close
+User-Agent: ruby
+Content-Length: 30
+X-Interapp-Identifier: dummy
+X-Interapp-Signature: 304502210096e30cdca8d21ccd425eef825216dd65edb3fc4b3a6b401a7010c653208e864202201b442c03037c8deb6e3ff27cc33f6ddc338e02923d45ada41b5d57ee7d4b8a4a
+
+{"test":["message","payload"]}
+```
+
+And its corresponding response:
+
+```http
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+Etag: "bffe0338e6d1e6de23449ec0fe84d0f1"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 8a587735-261e-4630-a392-a04adbb42b8d
+X-Runtime: 0.238221
+Server: WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08)
+Date: Sun, 07 Sep 2014 03:18:11 GMT
+Content-Length: 26
+Connection: close
+
+{"received_at":1410059891}
+```
+
 ### Signatures
 
 Signatures are created from the SHA-256 digest of the payload string with a random temporary key.
