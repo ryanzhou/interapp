@@ -1,13 +1,17 @@
 module Interapp
-  attr :message
+  attr :message, :peer
 
   class SendMessageService
-    def initialize(payload:, peer_identifier:)
-      @message = Message.new(payload: payload, peer_identifier: peer_identifier)
+    def initialize(data:, peer_identifier:)
+      @peer = Interapp::Peer.find(peer_identifier)
+      raise Interapp::UnknownPeerError if @peer.nil?
+      payload = JSON.dump(data)
+      @message = Message.new(payload: payload, peer: peer)
     end
 
     def perform
-      # TODO
+      message.sign
+      RestClient.post(peer.endpoint, message.payload, content_type: 'application/json')
     end
   end
 end

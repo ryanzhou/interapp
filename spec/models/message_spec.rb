@@ -37,7 +37,7 @@ describe Interapp::Message do
 
   describe "#sign" do
     before do
-      Interapp.private_key = keypair[0]
+      Interapp.configure { |config| config.private_key = keypair[0] }
       subject.sign
     end
 

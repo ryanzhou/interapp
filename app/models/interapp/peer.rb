@@ -8,21 +8,16 @@ module Interapp
 
     def public_key_decoded
       @public_key_decoded ||= ECDSA::Format::PointOctetString.decode(
-        [public_key].pack("H*"), Interapp::Configuration::EC_GROUP
+        [public_key].pack("H*"), Interapp::EC_GROUP
       )
     end
 
-    def self.add(identifier:, public_key:, endpoint:)
-      @peers ||= []
-      @peers < self.new(identifier: identifier, public_key: public_key, endpoint: endpoint)
-    end
-
     def self.all
-      @peers
+      Interapp.configuration.peers
     end
 
     def self.find(identifier)
-      @peers.find{ |peer| peer.identifier = identifier }.first
+      self.all.peers.find{ |peer| peer.identifier = identifier }.first
     end
   end
 end

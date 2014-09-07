@@ -11,7 +11,7 @@ module Interapp
     end
 
     def sign
-      encoded_signature = Interapp::Cryptography.sign(payload, Interapp.private_key.to_i(16))
+      encoded_signature = Interapp::Cryptography.sign(payload, Interapp.configuration.private_key.to_i(16))
       self.signature = encoded_signature.unpack("H*").first
     end
 

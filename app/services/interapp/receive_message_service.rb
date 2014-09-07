@@ -1,13 +1,20 @@
 module Interapp
-  attr :message
+  attr :message, :data
 
   class ReceiveMessageService
     def initialize(payload:, peer_identifier:, signature:)
-      @message = Message.new(payload: payload, peer_identifier: peer_identifier, signature: signature)
+      peer = Interapp::Peer.find(peer_identifier)
+      raise Interapp::UnknownPeerError if peer.nil?
+      @message = Message.new(payload: payload, peer: peer, signature: signature)
+      @data = JSON.load(@message.payload)
     end
 
     def perform
-      # TODO
+      if @message.verify
+        Interapp.configuration.handler.call(data, message.peer_identifier)
+      else
+        raise Interapp::SignatureInvalidError
+      end
     end
   end
 end

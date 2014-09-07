@@ -24,7 +24,7 @@ module Interapp
 
     private
     def self.group
-      Interapp::Configuration::EC_GROUP
+      Interapp::EC_GROUP
     end
   end
 end
