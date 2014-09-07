@@ -1,20 +1,27 @@
 module Interapp
-  attr :message, :data
-
   class ReceiveMessageService
+    attr :message, :peer, :data
+
     def initialize(payload:, peer_identifier:, signature:)
-      peer = Interapp::Peer.find(peer_identifier)
-      raise Interapp::UnknownPeerError if peer.nil?
-      @message = Message.new(payload: payload, peer: peer, signature: signature)
+      find_peer(peer_identifier)
+      @message = Message.new(payload: payload, peer: @peer, signature: signature)
       @data = JSON.load(@message.payload)
     end
 
     def perform
       if @message.verify
-        Interapp.configuration.handler.call(data, message.peer_identifier)
+        Interapp.configuration.handler.call(data, message.peer.identifier)
       else
         raise Interapp::SignatureInvalidError
       end
+    rescue OpenSSL::ASN1::ASN1Error
+      raise Interapp::SignatureInvalidError
+    end
+
+    private
+    def find_peer(peer_identifier)
+      @peer = Interapp::Peer.find(peer_identifier)
+      raise Interapp::UnknownPeerError if @peer.nil?
     end
   end
 end

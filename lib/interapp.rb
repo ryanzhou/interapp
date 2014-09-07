@@ -1,4 +1,5 @@
 require "ecdsa"
+require "rest-client"
 require "interapp/engine"
 require "interapp/configuration"
 require "interapp/cryptography"

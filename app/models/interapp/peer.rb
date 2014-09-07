@@ -17,7 +17,7 @@ module Interapp
     end
 
     def self.find(identifier)
-      self.all.peers.find{ |peer| peer.identifier = identifier }.first
+      self.all.find{ |peer| peer.identifier == identifier }
     end
   end
 end
