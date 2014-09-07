@@ -7,14 +7,15 @@ Interapp.configure do |config|
     puts data.to_yaml
   end
 
-  config.add_peer(
-    identifier: "dummy",
-    public_key: "02aeca3e7c706158823dd23a03373438c355cdf476fe3594364226ada0035abfea",
-    endpoint: "https://dummy.example.com/interapp"
-  )
-  config.add_peer(
-    identifier: "dummy2",
-    public_key: "025690f4afe20e82ce8098ba8cd6b09916a80f7bf02617b7a03982f68630911535",
-    endpoint: "https://dummy2.example.com/interapp"
-  )
+  config.add_peer do |peer|
+    peer.identifier = "dummy"
+    peer.public_key = "02aeca3e7c706158823dd23a03373438c355cdf476fe3594364226ada0035abfea"
+    peer.endpoint = "https://dummy.example.com/interapp"
+  end
+
+  config.add_peer do |peer|
+    peer.identifier = "dummy2"
+    peer.public_key = "025690f4afe20e82ce8098ba8cd6b09916a80f7bf02617b7a03982f68630911535"
+    peer.endpoint = "https://dummy2.example.com/interapp"
+  end
 end

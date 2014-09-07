@@ -5,7 +5,7 @@
 
 namespace :interapp do
   desc "Generate a private key and its public key"
-  task :generate_keypair do
+  task :keypair do
     keypair = Interapp::Cryptography.generate_keypair
     puts "Private Key:\n#{keypair[0]}\nPublic Key:\n#{keypair[1]}"
   end

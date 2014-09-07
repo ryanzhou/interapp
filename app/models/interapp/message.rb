@@ -2,7 +2,7 @@ module Interapp
   class Message
     attr_accessor :payload, :peer, :signature
 
-    def initialize(attributes)
+    def initialize(attributes = {})
       attributes.each { |name, value| send("#{name}=", value) }
     end
 

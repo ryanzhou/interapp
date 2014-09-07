@@ -17,7 +17,7 @@ module Interapp
     yield(configuration)
   end
 
-  def self.send_message(data:, peer_identifier:)
+  def self.send_to(peer_identifier, data)
     Interapp::SendMessageService.new(data: data, peer_identifier: peer_identifier)
   end
 end

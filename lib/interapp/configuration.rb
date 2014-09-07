@@ -8,9 +8,11 @@ module Interapp
       @handler = block
     end
 
-    def add_peer(identifier:, public_key:, endpoint:)
+    def add_peer
+      peer = Interapp::Peer.new
+      yield(peer)
       @peers ||= []
-      @peers << Interapp::Peer.new(identifier: identifier, public_key: public_key, endpoint: endpoint)
+      @peers << peer
     end
   end
 end
