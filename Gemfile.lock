@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    interapp (0.0.1)
+    interapp (0.0.3)
       ecdsa (~> 1.1.0)
       rails (~> 4.1.1, >= 4.1.1)
       rest-client (~> 1.7.2)

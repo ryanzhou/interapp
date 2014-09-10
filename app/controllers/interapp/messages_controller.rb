@@ -1,5 +1,5 @@
 module Interapp
-  class MessagesController < ApplicationController
+  class MessagesController < Interapp::ApplicationController
     def create
       Interapp::ReceiveMessageService.new(
         payload: request.body.read,
