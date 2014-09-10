@@ -18,6 +18,6 @@ module Interapp
   end
 
   def self.send_to(peer_identifier, data)
-    Interapp::SendMessageService.new(data: data, peer_identifier: peer_identifier)
+    Interapp::SendMessageService.new(data: data, peer_identifier: peer_identifier).perform
   end
 end
