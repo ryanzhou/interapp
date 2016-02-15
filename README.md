@@ -145,6 +145,10 @@ Connection: close
 
 Signatures are created from the SHA-256 digest of the payload string with a random temporary key.
 
+## Real-world Usage
+
+Interapp is being used at [CoinJar](https://www.coinjar.com/) for delivering transaction notifications and updating user states across different Rails apps. The payloads always contain an `action` string field which allows a dedicated `InterappClientService` module within each app to route the request to the corresponding internal methods. This makes the API extremely simple to test.
+
 ## Contributors
 
 If you want to contribute to this gem, you can fork this repository and set up your development environment.
