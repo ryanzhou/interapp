@@ -34,6 +34,12 @@ describe Interapp::ReceiveMessageService do
         expect(@mock_handler).to receive(:receive).with({ "test" => ["message", "payload"]}, "dummy")
         subject.perform
       end
+
+      it "sets the return value attribute" do
+        allow(@mock_handler).to receive(:receive).with({ "test" => ["message", "payload"]}, "dummy").and_return({ dummy: "response" })
+        subject.perform
+        expect(subject.return_value).to eq({ dummy: "response" })
+      end
     end
 
     context "with invalid signature" do

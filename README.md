@@ -90,6 +90,8 @@ Interapp.send_to "foobar", { hello: "world" }
 
 As long as you've configured "foobar" correctly and added it as a peer in your configuration, this message should be signed and delivered in no time, and automatically verified, parsed and sent to the custom message handler at the other end.
 
+The return value from the peer will also be automatically encoded and decoded back to Ruby hash or array.
+
 ## Protocol
 
 Interapp uses simple HTTP for messaging, with the request body being the JSON payload. There are two special HTTP headers required by Interapp:

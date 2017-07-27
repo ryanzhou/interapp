@@ -16,13 +16,14 @@ describe "POST /interapp" do
     end
 
     it "handles the message correctly" do
-      expect(@mock_handler).to receive(:receive).with({ "test" => ["message", "payload"]}, "dummy")
+      expect(@mock_handler).to receive(:receive).with({ "test" => ["message", "payload"]}, "dummy").and_return({ dummy: "response"})
       post "/interapp", payload, {
         "CONTENT_TYPE" => "application/json",
         "X-Interapp-Identifier" => identifier,
         "X-Interapp-Signature" => signature
       }
       expect(response.status).to eq(200)
+      expect(response.body).to eq("{\"dummy\":\"response\"}")
     end
   end
 

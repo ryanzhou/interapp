@@ -10,11 +10,12 @@ module Interapp
     end
 
     def perform
-      RestClient.post(peer.endpoint, message.payload, {
+      response = RestClient.post(peer.endpoint, message.payload, {
         content_type: 'application/json',
         "X-Interapp-Identifier" => Interapp.configuration.identifier,
         "X-Interapp-Signature" => message.signature
       })
+      JSON.parse(response) if response
     end
 
     private

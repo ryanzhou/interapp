@@ -1,6 +1,6 @@
 module Interapp
   class ReceiveMessageService
-    attr :message, :peer, :data
+    attr :message, :peer, :data, :return_value
 
     def initialize(payload:, peer_identifier:, signature:)
       find_peer(peer_identifier)
@@ -10,7 +10,7 @@ module Interapp
 
     def perform
       if @message.verify
-        Interapp.configuration.handler.call(data, message.peer.identifier)
+        @return_value = Interapp.configuration.handler.call(data, message.peer.identifier)
       else
         raise Interapp::SignatureInvalidError
       end

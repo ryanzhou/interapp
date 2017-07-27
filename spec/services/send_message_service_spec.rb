@@ -26,5 +26,10 @@ describe Interapp::SendMessageService do
       })
       subject.perform
     end
+
+    it "returns parsed json response" do
+      allow(RestClient).to receive(:post).and_return("{\"dummy\":\"response\"}")
+      expect(subject.perform).to eq({"dummy" => "response"})
+    end
   end
 end
