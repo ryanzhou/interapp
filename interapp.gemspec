@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", '>= 4.1.0', '< 6.0'
   s.add_dependency "ecdsa", "~> 1.1.0"
-  s.add_dependency "rest-client", "~> 1.7.2"
+  s.add_dependency "rest-client", "> 1.7.0", "< 3.0"
 
   s.add_development_dependency 'rspec-rails', '~> 2.14.1'
   s.add_development_dependency 'sqlite3'
