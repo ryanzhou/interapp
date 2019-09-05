@@ -1,3 +1,3 @@
 module Interapp
-  VERSION = "1.0.1"
+  VERSION = '6.0.0'.freeze
 end
