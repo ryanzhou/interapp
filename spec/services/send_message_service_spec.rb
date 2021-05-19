@@ -18,17 +18,20 @@ describe Interapp::SendMessageService do
   end
 
   describe "#perform" do
-    it "sends the POST request" do
-      expect(RestClient).to receive(:post).with(subject.peer.endpoint, subject.message.payload, {
-        content_type: 'application/json',
-        "X-Interapp-Identifier" => Interapp.configuration.identifier,
-        "X-Interapp-Signature" => subject.message.signature
-      })
-      subject.perform
-    end
-
-    it "returns parsed json response" do
-      allow(RestClient).to receive(:post).and_return("{\"dummy\":\"response\"}")
+    it "sends the POST request and return parsed json response" do
+      stub_request(:post, "https://dummy.example.com/interapp")
+        .with(
+          body: "{\"test\":[\"message\",\"payload\"]}",
+          headers: {
+            'Content-Type' => 'application/json',
+            'X-Interapp-Identifier' => Interapp.configuration.identifier,
+            'X-Interapp-Signature' => subject.message.signature
+          }
+        ).to_return(
+          status: 200,
+          body: "{\"dummy\":\"response\"}",
+          headers: {}
+        )
       expect(subject.perform).to eq({"dummy" => "response"})
     end
   end
