@@ -19,7 +19,8 @@ module Interapp
         {
           "X-Interapp-Identifier" => Interapp.configuration.identifier,
           "X-Interapp-Signature" => message.signature,
-          "Content-Type" => "application/json"
+          "Content-Type" => "application/json",
+          "Accept" => "application/json"
         }
       )
       JSON.parse(response.body) if response

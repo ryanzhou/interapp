@@ -24,6 +24,7 @@ describe Interapp::SendMessageService do
           body: "{\"test\":[\"message\",\"payload\"]}",
           headers: {
             'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
             'X-Interapp-Identifier' => Interapp.configuration.identifier,
             'X-Interapp-Signature' => subject.message.signature
           }
