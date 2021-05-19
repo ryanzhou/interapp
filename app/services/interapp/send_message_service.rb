@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 module Interapp
   class SendMessageService
     attr :message, :peer, :payload
@@ -10,12 +13,17 @@ module Interapp
     end
 
     def perform
-      response = RestClient.post(peer.endpoint, message.payload, {
-        content_type: 'application/json',
-        "X-Interapp-Identifier" => Interapp.configuration.identifier,
-        "X-Interapp-Signature" => message.signature
-      })
-      JSON.parse(response) if response
+      response = Net::HTTP.post(
+        URI(peer.endpoint),
+        message.payload,
+        {
+          "X-Interapp-Identifier" => Interapp.configuration.identifier,
+          "X-Interapp-Signature" => message.signature,
+          "Content-Type" => "application/json",
+          "Accept" => "application/json"
+        }
+      )
+      JSON.parse(response.body) if response
     end
 
     private

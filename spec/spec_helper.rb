@@ -2,6 +2,9 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 require 'rspec/rails'
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!
 
 Rails.backtrace_cleaner.remove_silencers!
 

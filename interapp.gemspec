@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'ecdsa', '~> 1.1.0'
   s.add_dependency 'rails', '>= 5.0.0', '< 7.0'
-  s.add_dependency 'rest-client', '> 1.7.0', '< 3.0'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'webmock'
 end
